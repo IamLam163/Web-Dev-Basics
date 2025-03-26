@@ -20,11 +20,28 @@ mongoose
   .then(() => console.log("MongoDB connected"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
+// Models directory
 const itemSchema = new mongoose.Schema({
-  name: String
+  name: String,
+  date: { type: Date, default: Date.now }
 });
 
 const Item = mongoose.model("Item", itemSchema);
+
+// Controllers directory
+// import User (model) from models directory
+/*
+export const createItem = (req, res) => {
+  const newItem = new Item({ name: req.body.name });
+  newItem.save()
+    .then(item => res.json(item))
+    .catch(error => res.status(500).json({ error: error.message }));
+}
+*/
+
+// Routes directory
+//const router = express.Router(); // router = ('/items', createItem)
+// router.post('/items', createItem); // export default router
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
